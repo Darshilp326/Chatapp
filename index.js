@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const keys = require('./config/keys');
 // set up express app
 const app = express();
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/patientDb');
+mongoose.connect(keys.mongoDB.dbURL, ()=>{
+    console.log('connected to mongoDB');
+});
 mongoose.Promise = global.Promise;
 
 //set up static files
